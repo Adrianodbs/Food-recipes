@@ -1,5 +1,11 @@
+import RouteApp from './routes'
+
 function App() {
-  return <div>home</div>
+  return (
+    <>
+      <RouteApp />
+    </>
+  )
 }
 
 export default App
