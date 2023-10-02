@@ -5,17 +5,21 @@ export default function Header() {
   return (
     <C.Container>
       <Link to="/">
-        <h2>
+        <C.Title>
           You<span>Food</span>
-        </h2>
+        </C.Title>
       </Link>
-      <ul>
+      <C.List>
         <li>
           <Link to="/search">Pesquisar receitas</Link>
+        </li>
+        <li>
           <Link to="/letter">Receitas por letra</Link>
+        </li>
+        <li>
           <Link to="/ingredient">Receitas por ingrediente</Link>
         </li>
-      </ul>
+      </C.List>
     </C.Container>
   )
 }
