@@ -1,18 +1,19 @@
 import * as C from './style'
-
-import Food from '../../assets/img/prato.jpg'
 import Button from '../Button'
 
-export default function FoodCard() {
+interface FoodCardProps {
+  title: string
+  nationality: string
+  image: string
+}
+
+export default function FoodCard({ title, nationality, image }: FoodCardProps) {
   return (
     <C.Container>
-      <img src={Food} alt="prato" />
+      <img src={image} alt={title} />
       <div className="text">
-        <h3>Nome do prato</h3>
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-          eligendi id doloribus fugit! Vel, quae.{' '}
-        </span>
+        <h3>{title}</h3>
+        <span>{nationality}</span>
         <Button>YouTube</Button>
       </div>
     </C.Container>
