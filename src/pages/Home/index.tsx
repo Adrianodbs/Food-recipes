@@ -10,6 +10,7 @@ interface MealProps {
   strMealThumb: string
   strMeal: string
   strArea: string
+  youtubeUrl: string
 }
 
 export default function Home() {
@@ -25,7 +26,14 @@ export default function Home() {
           }
         })
 
-        const randomMeals = response.data.meals ?? []
+        const randomMeals: MealProps[] =
+          response.data.meals?.map((meal: any) => ({
+            idMeal: meal.idMeal,
+            strMealThumb: meal.strMealThumb,
+            strMeal: meal.strMeal,
+            strArea: meal.strArea,
+            youtubeUrl: meal.strYoutube
+          })) ?? []
         setMeals(randomMeals)
       } catch (error) {
         console.error('Erro ao buscar refeições:', error)
@@ -54,6 +62,7 @@ export default function Home() {
             image={meal.strMealThumb}
             title={meal.strMeal}
             nationality={meal.strArea}
+            youtubeUrl={meal.youtubeUrl}
           />
         ))}
       </C.Content>

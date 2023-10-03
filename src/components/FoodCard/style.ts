@@ -23,5 +23,14 @@ export const Container = styled.div`
       margin-top: 5px;
       color: var(--gray);
     }
+    span{
+      display: flex;
+      gap: 5px;
+      width: 100%;
+    }
+    p{
+      font-weight: bold;
+    }
   }
+  
 `
