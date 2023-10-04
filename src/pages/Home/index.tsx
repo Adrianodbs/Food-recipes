@@ -12,7 +12,7 @@ export default function Home() {
   const [meals, setMeals] = useState<MealProps[]>([])
 
   useEffect(() => {
-    async function fetchRandomMeals() {
+    async function fetchGetMeals() {
       try {
         const response = await apiData.get('search.php', {
           params: {
@@ -21,7 +21,7 @@ export default function Home() {
           }
         })
 
-        const randomMeals: MealProps[] =
+        const getMeals: MealProps[] =
           response.data.meals?.map((meal: any) => ({
             idMeal: meal.idMeal,
             strMealThumb: meal.strMealThumb,
@@ -29,13 +29,13 @@ export default function Home() {
             strArea: meal.strArea,
             youtubeUrl: meal.strYoutube
           })) ?? []
-        setMeals(randomMeals)
+        setMeals(getMeals)
       } catch (error) {
         console.error('Erro ao buscar refeições:', error)
       }
     }
 
-    fetchRandomMeals()
+    fetchGetMeals()
   }, [])
   return (
     <C.Container>

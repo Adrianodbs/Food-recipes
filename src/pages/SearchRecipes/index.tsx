@@ -26,11 +26,20 @@ export default function SearchRecipes() {
           apikey: '1'
         }
       })
-      setSearchResults(response.data.meals || [])
+      const getMeals: MealProps[] =
+        response.data.meals?.map((meal: any) => ({
+          idMeal: meal.idMeal,
+          strMealThumb: meal.strMealThumb,
+          strMeal: meal.strMeal,
+          strArea: meal.strArea,
+          youtubeUrl: meal.strYoutube
+        })) ?? []
+      setSearchResults(getMeals)
     } catch (error) {
       console.error('Erro ao buscar refeições:', error)
     }
   }
+
   return (
     <C.Container>
       <C.Content>
