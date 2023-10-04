@@ -4,14 +4,9 @@ import Food from '../../assets/img/prato.jpeg'
 import Button from '../../components/Button'
 import FoodCard from '../../components/FoodCard'
 import apiData from '../../services/api'
+import { Link } from 'react-router-dom'
 
-interface MealProps {
-  idMeal: string
-  strMealThumb: string
-  strMeal: string
-  strArea: string
-  youtubeUrl: string
-}
+import MealProps from '../../interfaces/MealProps'
 
 export default function Home() {
   const [meals, setMeals] = useState<MealProps[]>([])
@@ -50,7 +45,9 @@ export default function Home() {
           <span>Conheça aqui as nossas principais receitas!</span>
           <div className="delivery">
             <p>Também entregamos por delivery.</p>
-            <Button>Encontre seu prato preferido</Button>
+            <Link to="/search">
+              <Button>Encontre seu prato preferido</Button>
+            </Link>
           </div>
         </div>
         <img src={Food} alt="Um prato com macarrão" />
