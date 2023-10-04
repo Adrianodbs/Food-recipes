@@ -12,18 +12,15 @@ export const Container = styled.div`
 export const Content = styled.div`
   max-width: 800px;
   width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   h1{
     color: var(--secondary);
   }
 
-  form{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 30px 0;
-  }
 
   ul{
     display: flex;
@@ -31,13 +28,4 @@ export const Content = styled.div`
     justify-content: center;
     gap: 20px;
   }
-`
-
-export const Input = styled.input`
-  width: 80%;
-  border: 1px solid var(--primary);
-  height: 32px;
-  outline: none;
-  padding: 5px 10px;
-
 `

@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 340px;
-  width: 280px;
+  width: 380px;
 
 
   img{
@@ -22,6 +22,7 @@ export const Container = styled.div`
     h3{
       margin-top: 5px;
       color: var(--gray);
+      font-size: 16px;
     }
     span{
       display: flex;

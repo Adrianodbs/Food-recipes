@@ -1,3 +1,9 @@
+import * as C from './style'
+
 export default function RecipesByIngredient() {
-  return <div>RecipesByIngredient</div>
+  return (
+    <C.Container>
+      <h1>Receitas por ingredientes</h1>
+    </C.Container>
+  )
 }

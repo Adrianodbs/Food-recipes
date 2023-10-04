@@ -51,7 +51,7 @@ export default function RecipesbyLetters() {
             />
           ))
         ) : (
-          <p>Nenhum pra encontrado com essa letra</p>
+          <p>Receitas não encontradas</p>
         )}
       </C.Content>
     </C.Container>
