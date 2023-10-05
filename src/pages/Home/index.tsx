@@ -21,6 +21,7 @@ export default function Home() {
           }
         })
 
+        console.log(response.data.meals)
         const getMeals: MealProps[] =
           response.data.meals?.map((meal: any) => ({
             idMeal: meal.idMeal,

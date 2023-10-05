@@ -10,6 +10,11 @@ export const Btn = styled.button`
   cursor: pointer;
   transition: all .2s;
 
+  a{
+    text-decoration: none;
+    color: #fff;
+  }
+
   &:hover{
     background-color: var(--primary);
   }

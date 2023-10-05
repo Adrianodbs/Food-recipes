@@ -4,4 +4,8 @@ export default interface MealProps{
   strMeal: string
   strArea: string
   youtubeUrl: string
+  strCategory?: string
+  strInstructions?: string
+  strTags?: string
+  strSource?: string
 }

@@ -20,7 +20,6 @@ export default function FoodCard({
   const navigate = useNavigate()
 
   const handleCardClick = () => {
-    // Você pode ajustar o caminho conforme necessário
     navigate(`/detalhes/${id}`)
   }
   return (
