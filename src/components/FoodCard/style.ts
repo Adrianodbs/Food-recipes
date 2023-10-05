@@ -5,6 +5,11 @@ export const Container = styled.div`
   flex-direction: column;
   height: 340px;
   width: 380px;
+  cursor: pointer;
+
+  &:hover{
+    transform: scale(1.05);
+  }
 
 
   img{

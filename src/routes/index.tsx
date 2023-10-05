@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import SearchRecipes from '../pages/SearchRecipes'
 import RecipesByIngredient from '../pages/RecipesByIngredient'
 import RecipesbyLetters from '../pages/RecipesbyLetters'
+import Details from '../pages/Details'
 
 export default function RouteApp() {
   return (
@@ -14,6 +15,7 @@ export default function RouteApp() {
         <Route path="/search" element={<SearchRecipes />} />
         <Route path="/ingredient" element={<RecipesByIngredient />} />
         <Route path="/letter" element={<RecipesbyLetters />} />
+        <Route path="/detalhes/:id" element={<Details />} />
       </Routes>
     </BrowserRouter>
   )

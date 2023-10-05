@@ -48,6 +48,7 @@ export default function RecipesbyLetters() {
               title={meal.strMeal}
               nationality={meal.strArea}
               youtubeUrl={meal.youtubeUrl}
+              id={meal.idMeal}
             />
           ))
         ) : (

@@ -90,6 +90,7 @@ export default function RecipesByIngredient() {
               title={meal.strMeal}
               nationality={meal.strArea}
               youtubeUrl={meal.youtubeUrl}
+              id={meal.idMeal}
             />
           ))
         ) : (

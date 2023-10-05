@@ -60,6 +60,7 @@ export default function Home() {
             title={meal.strMeal}
             nationality={meal.strArea}
             youtubeUrl={meal.youtubeUrl}
+            id={meal.idMeal}
           />
         ))}
       </C.Content>
