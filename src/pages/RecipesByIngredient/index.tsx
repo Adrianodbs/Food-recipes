@@ -5,6 +5,30 @@ import apiData from '../../services/api'
 import * as C from './style'
 import { useState, useEffect } from 'react'
 
+const searchMeals = async (ingredient: string) => {
+  try {
+    const response = await apiData.get('filter.php', {
+      params: {
+        i: ingredient,
+        apikey: '1'
+      }
+    })
+
+    return (
+      response.data.meals?.map((meal: any) => ({
+        idMeal: meal.idMeal,
+        strMealThumb: meal.strMealThumb,
+        strMeal: meal.strMeal,
+        strArea: meal.strArea,
+        youtubeUrl: meal.strYoutube
+      })) ?? []
+    )
+  } catch (error) {
+    console.error('Erro ao buscar refeições:', error)
+    throw error
+  }
+}
+
 export default function RecipesByIngredient() {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState<MealProps[]>([])
@@ -14,8 +38,7 @@ export default function RecipesByIngredient() {
     const fetchIngredients = async () => {
       try {
         const response = await apiData.get('list.php?i=list')
-
-        const ingredients: string[] =
+        const ingredients =
           response.data.meals?.map(
             (ingredient: any) => ingredient.strIngredient
           ) ?? []
@@ -33,22 +56,8 @@ export default function RecipesByIngredient() {
   ) => {
     event.preventDefault()
     try {
-      const response = await apiData.get('filter.php', {
-        params: {
-          i: searchTerm,
-          apikey: '1'
-        }
-      })
-      const getMeals: MealProps[] =
-        response.data.meals?.map((meal: any) => ({
-          idMeal: meal.idMeal,
-          strMealThumb: meal.strMealThumb,
-          strMeal: meal.strMeal,
-          strArea: meal.strArea,
-          youtubeUrl: meal.strYoutube
-        })) ?? []
-
-      setSearchResults(getMeals)
+      const meals = await searchMeals(searchTerm)
+      setSearchResults(meals)
     } catch (error) {
       console.error('Erro ao buscar refeições:', error)
     }
@@ -56,26 +65,13 @@ export default function RecipesByIngredient() {
 
   const handleIngredientClick = async (ingredient: string) => {
     try {
-      const response = await apiData.get('filter.php', {
-        params: {
-          i: ingredient,
-          apikey: '1'
-        }
-      })
-      const getMeals: MealProps[] =
-        response.data.meals?.map((meal: any) => ({
-          idMeal: meal.idMeal,
-          strMealThumb: meal.strMealThumb,
-          strMeal: meal.strMeal,
-          strArea: meal.strArea,
-          youtubeUrl: meal.strYoutube
-        })) ?? []
-
-      setSearchResults(getMeals)
+      const meals = await searchMeals(ingredient)
+      setSearchResults(meals)
     } catch (error) {
       console.error('Erro ao buscar refeições:', error)
     }
   }
+
   return (
     <C.Container>
       <h1>Receitas por ingredientes</h1>
