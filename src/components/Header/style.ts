@@ -1,4 +1,7 @@
 import styled from "styled-components";
+interface ListProps {
+  open: boolean;
+}
 
 export const Container = styled.div`
   display: flex;
@@ -12,30 +15,61 @@ export const Container = styled.div`
   }
 `
 
-export const Title = styled.h2`
+export const Title = styled.h2<ListProps>`
   color: var(--secondary);
   font-size: 24px;
   font-weight: bold;
   letter-spacing: 2px;
+  
+  @media (max-width: 780px) {
+    display: ${({ open }) => (open ? 'none' : 'block')};
+  }
+
+  
   span{
     color: var(--primary);
   }
 `
 
-export const List = styled.ul`
+export const MenuToggle = styled.div`
+  display: none;
+  cursor: pointer;
+
+  @media (max-width: 780px) {
+    display: block;
+    font-size: 24px;
+  }
+`;
+
+export const List = styled.ul<ListProps>`
   list-style: none;
   display: flex;
   align-items: center;
   gap: 20px;
   font-weight: 500;
-  
 
-  a{
-    color: var(--primary);
-    transition: all .2s;
+  li {
+    margin-bottom: 10px;
 
-    &:hover{
-      color: var(--secondary);
+    a {
+      color: var(--primary);
+      transition: all 0.2s;
+
+      &:hover {
+        color: var(--secondary);
+      }
     }
   }
-`
+
+  @media (max-width: 780px) {
+    flex-direction: column;
+    position: absolute;
+    top: 48px;
+    right: ${({ open }) => (open ? '0' : '-100%')};
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 0;
+    transition: right 0.5s ease-in-out;
+    display: ${({ open }) => (open ? 'flex' : 'none')};
+  }
+`;
