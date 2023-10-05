@@ -2,6 +2,7 @@ import FoodCard from '../../components/FoodCard'
 import apiData from '../../services/api'
 import * as C from './style'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import MealProps from '../../interfaces/MealProps'
 import Search from '../../components/Search'
 
@@ -34,6 +35,10 @@ export default function SearchRecipes() {
           strArea: meal.strArea,
           youtubeUrl: meal.strYoutube
         })) ?? []
+
+      if (getMeals.length === 0) {
+        toast.error('Nenhuma receita encontrada para o termo pesquisado.')
+      }
       setSearchResults(getMeals)
     } catch (error) {
       console.error('Erro ao buscar refeições:', error)

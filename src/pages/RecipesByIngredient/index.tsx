@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify'
 import FoodCard from '../../components/FoodCard'
 import Search from '../../components/Search'
 import MealProps from '../../interfaces/MealProps'
@@ -13,6 +14,8 @@ const searchMeals = async (ingredient: string) => {
         apikey: '1'
       }
     })
+
+    console.log(response.data.meals)
 
     return (
       response.data.meals?.map((meal: any) => ({
@@ -38,6 +41,7 @@ export default function RecipesByIngredient() {
     const fetchIngredients = async () => {
       try {
         const response = await apiData.get('list.php?i=list')
+
         const ingredients =
           response.data.meals?.map(
             (ingredient: any) => ingredient.strIngredient
@@ -55,6 +59,10 @@ export default function RecipesByIngredient() {
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault()
+    if (!allIngredients.includes(searchTerm)) {
+      toast.error('O item pesquisado não se encontra na lista de ingredientes!')
+      return
+    }
     try {
       const meals = await searchMeals(searchTerm)
       setSearchResults(meals)

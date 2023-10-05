@@ -6,9 +6,13 @@ import RecipesByIngredient from '../pages/RecipesByIngredient'
 import RecipesbyLetters from '../pages/RecipesbyLetters'
 import Details from '../pages/Details'
 
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
+
 export default function RouteApp() {
   return (
     <BrowserRouter>
+      <ToastContainer autoClose={3000} />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

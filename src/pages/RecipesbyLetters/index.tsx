@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import { alphabet } from '../../utils/alphabet'
 import * as C from './style'
 import apiData from '../../services/api'
@@ -19,6 +20,9 @@ export default function RecipesbyLetters() {
           strArea: meal.strArea,
           youtubeUrl: meal.strYoutube
         })) ?? []
+      if (getMeals.length === 0) {
+        toast.error('Nenhuma receita encontrada para a letra selecionada')
+      }
       setRecipes(getMeals)
     } catch (error) {
       console.error('Error fetching recipes: ', error)
