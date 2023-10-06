@@ -54,7 +54,6 @@ export default function Details() {
 
     fetchDetails()
   }, [id])
-  console.log(details)
   if (!details) {
     return <div>Carregando detalhes...</div>
   }

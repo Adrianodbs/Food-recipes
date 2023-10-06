@@ -10,8 +10,7 @@ const searchMeals = async (ingredient: string) => {
   try {
     const response = await apiData.get('filter.php', {
       params: {
-        i: ingredient,
-        apikey: '1'
+        i: ingredient
       }
     })
 
@@ -59,12 +58,17 @@ export default function RecipesByIngredient() {
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault()
-    if (!allIngredients.includes(searchTerm)) {
+    const searchTermLowerCase = searchTerm.toLowerCase()
+    if (
+      !allIngredients
+        .map(ingredient => ingredient.toLowerCase())
+        .includes(searchTermLowerCase)
+    ) {
       toast.error('O item pesquisado não se encontra na lista de ingredientes!')
       return
     }
     try {
-      const meals = await searchMeals(searchTerm)
+      const meals = await searchMeals(searchTermLowerCase)
       setSearchResults(meals)
     } catch (error) {
       console.error('Erro ao buscar refeições:', error)

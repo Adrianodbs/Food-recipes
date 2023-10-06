@@ -16,8 +16,7 @@ export default function Home() {
       try {
         const response = await apiData.get('search.php', {
           params: {
-            s: '',
-            apikey: '1'
+            s: ''
           }
         })
 
@@ -38,6 +37,7 @@ export default function Home() {
 
     fetchGetMeals()
   }, [])
+
   return (
     <C.Container>
       <C.Hero>
