@@ -14,6 +14,11 @@ export const Hero = styled.div`
   background-color: var(--primary);
   height: 320px;
 
+  @media (max-width: 770px) {
+      justify-content: center;
+      padding: 0 20px;
+    }
+
   .homeText{
     display: flex;
     flex-direction: column;
@@ -22,13 +27,26 @@ export const Hero = styled.div`
     margin-left: 80px;
     height: 100%;
 
+    @media (max-width: 550px) {
+      margin-left: 0;
+    }
+
     h1{
       color: #fff;
       font-size: 48px;
       letter-spacing: 2px;
+
+    @media (max-width: 550px) {
+      font-size: 36px;
+      text-align: center;
+    }
     }
     span{
       font-weight: 500;
+      @media (max-width: 550px) {
+      font-size: 14px;
+      text-align: center;
+    }
     }
   }
 
@@ -37,6 +55,10 @@ export const Hero = styled.div`
     height: 250px;
     object-fit: contain;
     border-radius: 50%;
+
+    @media (max-width: 780px) {
+    display: none;
+  }
   }
 
   .delivery{
@@ -50,8 +72,16 @@ export const Hero = styled.div`
     align-items: center;
     gap: 20px;
 
+    @media (max-width: 550px) {
+      padding: 20px;
+    }
+
     p{
       font-weight: 600;
+
+      @media (max-width: 550px) {
+      text-align: center;
+    }
     }
   }
 `

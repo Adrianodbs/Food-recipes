@@ -9,6 +9,7 @@ export const Container = styled.div`
   align-items: center;
   padding: 10px 80px;
   height: 48px;
+  overflow: hidden;
 
   a{
     text-decoration: none;
@@ -48,16 +49,34 @@ export const List = styled.ul<ListProps>`
   gap: 20px;
   font-weight: 500;
 
+  
+  @media (max-width: 780px) {
+    font-weight: 500;
+  opacity: ${({ open }) => (open ? '1' : '0')};
+  pointer-events: ${({ open }) => (open ? 'auto' : 'none')};
+  transform: translateX(${({ open }) => (open ? '0' : '-100%')});
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  position: absolute;
+  top: 48px;
+  right: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px 0;
+  flex-direction: column;
+    }
+
   li {
-    margin-bottom: 10px;
+    @media (max-width: 780px) {
+      margin-bottom: 10px;
+    }
+  }
 
-    a {
-      color: var(--primary);
-      transition: all 0.2s;
+  a {
+    color: var(--primary);
+    transition: all 0.2s;
 
-      &:hover {
-        color: var(--secondary);
-      }
+    &:hover {
+      color: var(--secondary);
     }
   }
 
@@ -70,6 +89,6 @@ export const List = styled.ul<ListProps>`
     background-color: #fff;
     padding: 10px 0;
     transition: right 0.5s ease-in-out;
-    display: ${({ open }) => (open ? 'flex' : 'none')};
+    /* display: ${({ open }) => (open ? 'flex' : 'none')}; */
   }
-`;
+`
