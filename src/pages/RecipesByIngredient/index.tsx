@@ -76,6 +76,7 @@ export default function RecipesByIngredient() {
     try {
       const meals = await searchMeals(searchTermLowerCase)
       setSearchResults(meals)
+      setSearchTerm('')
     } catch (error) {
       console.error('Erro ao buscar refeições:', error)
     }

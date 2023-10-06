@@ -36,6 +36,7 @@ export default function SearchRecipes() {
         toast.error('Nenhuma receita encontrada para o termo pesquisado.')
       }
       setSearchResults(getMeals)
+      setSearchTerm('')
     } catch (error) {
       console.error('Erro ao buscar refeições:', error)
     }
