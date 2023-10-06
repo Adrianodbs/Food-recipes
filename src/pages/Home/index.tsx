@@ -14,10 +14,12 @@ interface ApiResponse {
 
 export default function Home() {
   const [meals, setMeals] = useState<MealProps[]>([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function fetchGetMeals() {
       try {
+        setLoading(true)
         const response = await apiData.get<ApiResponse>('search.php', {
           params: {
             s: ''
@@ -27,6 +29,7 @@ export default function Home() {
         console.log(response.data.meals)
         const getMeals: MealProps[] = response.data.meals ?? []
         setMeals(getMeals)
+        setLoading(false)
       } catch (error) {
         console.error('Erro ao buscar refeições:', error)
       }
@@ -51,16 +54,20 @@ export default function Home() {
         <img src={Food} alt="Um prato com macarrão" />
       </C.Hero>
       <C.Content>
-        {meals.map(meal => (
-          <FoodCard
-            key={meal.idMeal}
-            image={meal.strMealThumb}
-            title={meal.strMeal}
-            nationality={meal.strArea}
-            youtubeUrl={meal.strYoutube}
-            id={meal.idMeal}
-          />
-        ))}
+        {loading ? (
+          <p>Carregando os pratos...</p>
+        ) : (
+          meals.map(meal => (
+            <FoodCard
+              key={meal.idMeal}
+              image={meal.strMealThumb}
+              title={meal.strMeal}
+              nationality={meal.strArea}
+              youtubeUrl={meal.strYoutube}
+              id={meal.idMeal}
+            />
+          ))
+        )}
       </C.Content>
     </C.Container>
   )

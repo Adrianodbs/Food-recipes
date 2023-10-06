@@ -37,10 +37,12 @@ export default function RecipesByIngredient() {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState<MealProps[]>([])
   const [allIngredients, setAllIngredients] = useState<string[]>([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchIngredients = async () => {
       try {
+        setLoading(true)
         const response = await apiData.get<ApiResponse>('list.php?i=list')
 
         const ingredients =
@@ -52,6 +54,7 @@ export default function RecipesByIngredient() {
             ) ?? []
 
         setAllIngredients(ingredients)
+        setLoading(false)
       } catch (error) {
         console.error('Erro ao buscar ingredientes:', error)
       }
@@ -113,6 +116,8 @@ export default function RecipesByIngredient() {
                 id={meal.idMeal}
               />
             ))
+          ) : loading ? (
+            <p>Carregando a lista de ingredientes...</p>
           ) : (
             <C.IngredientList>
               {allIngredients.map((ingredient, index) => (
