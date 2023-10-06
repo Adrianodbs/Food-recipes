@@ -20,12 +20,24 @@ export const Content = styled.div`
   .info{
     display: flex;
     justify-content: space-between;
-    gap: 40px;
     margin: 30px auto;
+    
+    @media(max-width:600px){
+      justify-content: center;
+      gap: 10px;
+    }
+
+    @media(max-width:450px){
+      flex-direction: column;
+    }
 
     p{
       font-size: 18px;
       font-weight: bold;
+
+      @media(max-width:600px){
+      font-size: 16px;
+    }
     }
 
     span{

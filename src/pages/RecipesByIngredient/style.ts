@@ -11,7 +11,13 @@ export const Container = styled.div`
   h1{
     color: var(--primary);
     margin: 20px 0 10px;
+    text-align: center;
   }
+`
+
+export const Content = styled.div`
+  max-width: 900px;
+  width: 90%;
 `
 
 export const FoodList = styled.ul`

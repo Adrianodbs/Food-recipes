@@ -82,35 +82,40 @@ export default function RecipesByIngredient() {
 
   return (
     <C.Container>
-      <h1>Receitas por ingredientes</h1>
-      <Search
-        submit={handleSearchSubmit}
-        placeholder="Digite o nome do ingrediente"
-        value={searchTerm}
-        onChange={event => setSearchTerm(event.target.value)}
-      />
-      <C.FoodList>
-        {searchResults.length > 0 ? (
-          searchResults.map(meal => (
-            <FoodCard
-              key={meal.idMeal}
-              image={meal.strMealThumb}
-              title={meal.strMeal}
-              nationality={meal.strArea}
-              youtubeUrl={meal.youtubeUrl}
-              id={meal.idMeal}
-            />
-          ))
-        ) : (
-          <C.IngredientList>
-            {allIngredients.map((ingredient, index) => (
-              <li key={index} onClick={() => handleIngredientClick(ingredient)}>
-                {ingredient}
-              </li>
-            ))}
-          </C.IngredientList>
-        )}
-      </C.FoodList>
+      <C.Content>
+        <h1>Receitas por ingredientes</h1>
+        <Search
+          submit={handleSearchSubmit}
+          placeholder="Digite o nome do ingrediente"
+          value={searchTerm}
+          onChange={event => setSearchTerm(event.target.value)}
+        />
+        <C.FoodList>
+          {searchResults.length > 0 ? (
+            searchResults.map(meal => (
+              <FoodCard
+                key={meal.idMeal}
+                image={meal.strMealThumb}
+                title={meal.strMeal}
+                nationality={meal.strArea}
+                youtubeUrl={meal.youtubeUrl}
+                id={meal.idMeal}
+              />
+            ))
+          ) : (
+            <C.IngredientList>
+              {allIngredients.map((ingredient, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleIngredientClick(ingredient)}
+                >
+                  {ingredient}
+                </li>
+              ))}
+            </C.IngredientList>
+          )}
+        </C.FoodList>
+      </C.Content>
     </C.Container>
   )
 }

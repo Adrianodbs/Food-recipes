@@ -35,29 +35,31 @@ export default function RecipesbyLetters() {
 
   return (
     <C.Container>
-      <h1>Encontre o prato pela letra</h1>
-      <C.LetterList>
-        {alphabet.map(l => (
-          <li key={l} onClick={() => handleLetterClick(l)}>
-            {l}
-          </li>
-        ))}
-      </C.LetterList>
       <C.Content>
-        {recipes.length > 0 ? (
-          recipes.map(meal => (
-            <FoodCard
-              key={meal.idMeal}
-              image={meal.strMealThumb}
-              title={meal.strMeal}
-              nationality={meal.strArea}
-              youtubeUrl={meal.youtubeUrl}
-              id={meal.idMeal}
-            />
-          ))
-        ) : (
-          <p>Receitas não encontradas</p>
-        )}
+        <h1>Encontre o prato pela letra</h1>
+        <C.LetterList>
+          {alphabet.map(l => (
+            <li key={l} onClick={() => handleLetterClick(l)}>
+              {l}
+            </li>
+          ))}
+        </C.LetterList>
+        <C.ContentList>
+          {recipes.length > 0 ? (
+            recipes.map(meal => (
+              <FoodCard
+                key={meal.idMeal}
+                image={meal.strMealThumb}
+                title={meal.strMeal}
+                nationality={meal.strArea}
+                youtubeUrl={meal.youtubeUrl}
+                id={meal.idMeal}
+              />
+            ))
+          ) : (
+            <p>Receitas não encontradas</p>
+          )}
+        </C.ContentList>
       </C.Content>
     </C.Container>
   )

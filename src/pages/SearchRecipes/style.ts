@@ -19,6 +19,7 @@ export const Content = styled.div`
 
   h1{
     color: var(--secondary);
+    text-align: center;
   }
 
 

@@ -4,7 +4,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 340px;
-  width: 380px;
+  max-width: 380px;
+  width: 90%;
   cursor: pointer;
 
   &:hover{

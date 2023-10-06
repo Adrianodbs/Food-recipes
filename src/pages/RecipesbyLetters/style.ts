@@ -11,11 +11,24 @@ export const Container = styled.div`
   h1{
     color: var(--primary);
     margin: 20px 0 10px;
+    text-align: center;
   }
+`
+
+export const Content = styled.div`
+  max-width: 900px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
 export const LetterList = styled.ul`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   list-style: none;
   gap: 5px;
 
@@ -31,7 +44,7 @@ export const LetterList = styled.ul`
   }
 `
 
-export const Content = styled.div`
+export const ContentList = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
