@@ -8,27 +8,24 @@ import { Link } from 'react-router-dom'
 
 import MealProps from '../../interfaces/MealProps'
 
+interface ApiResponse {
+  meals: MealProps[]
+}
+
 export default function Home() {
   const [meals, setMeals] = useState<MealProps[]>([])
 
   useEffect(() => {
     async function fetchGetMeals() {
       try {
-        const response = await apiData.get('search.php', {
+        const response = await apiData.get<ApiResponse>('search.php', {
           params: {
             s: ''
           }
         })
 
         console.log(response.data.meals)
-        const getMeals: MealProps[] =
-          response.data.meals?.map((meal: any) => ({
-            idMeal: meal.idMeal,
-            strMealThumb: meal.strMealThumb,
-            strMeal: meal.strMeal,
-            strArea: meal.strArea,
-            youtubeUrl: meal.strYoutube
-          })) ?? []
+        const getMeals: MealProps[] = response.data.meals ?? []
         setMeals(getMeals)
       } catch (error) {
         console.error('Erro ao buscar refeições:', error)
@@ -60,7 +57,7 @@ export default function Home() {
             image={meal.strMealThumb}
             title={meal.strMeal}
             nationality={meal.strArea}
-            youtubeUrl={meal.youtubeUrl}
+            youtubeUrl={meal.strYoutube}
             id={meal.idMeal}
           />
         ))}

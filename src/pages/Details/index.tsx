@@ -40,7 +40,7 @@ export default function Details() {
           strMealThumb: meal.strMealThumb,
           strMeal: meal.strMeal,
           strArea: meal.strArea,
-          youtubeUrl: meal.strYoutube,
+          strYoutube: meal.strYoutube,
           strCategory: meal.strCategory,
           strInstructions: meal.strInstructions,
           strTags: meal.strTags,
@@ -100,7 +100,7 @@ export default function Details() {
         <div className="buttons">
           <Button>
             <a
-              href={details.youtubeUrl}
+              href={details.strYoutube}
               target="_blank"
               rel="noopener noreferrer"
             >

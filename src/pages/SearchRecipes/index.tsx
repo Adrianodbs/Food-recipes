@@ -6,6 +6,10 @@ import { toast } from 'react-toastify'
 import MealProps from '../../interfaces/MealProps'
 import Search from '../../components/Search'
 
+interface ApiResponse {
+  meals: MealProps[]
+}
+
 export default function SearchRecipes() {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState<MealProps[]>([])
@@ -21,20 +25,12 @@ export default function SearchRecipes() {
   ) => {
     event.preventDefault()
     try {
-      const response = await apiData.get('search.php', {
+      const response = await apiData.get<ApiResponse>('search.php', {
         params: {
-          s: searchTerm,
-          apikey: '1'
+          s: searchTerm
         }
       })
-      const getMeals: MealProps[] =
-        response.data.meals?.map((meal: any) => ({
-          idMeal: meal.idMeal,
-          strMealThumb: meal.strMealThumb,
-          strMeal: meal.strMeal,
-          strArea: meal.strArea,
-          youtubeUrl: meal.strYoutube
-        })) ?? []
+      const getMeals: MealProps[] = response.data.meals ?? []
 
       if (getMeals.length === 0) {
         toast.error('Nenhuma receita encontrada para o termo pesquisado.')
@@ -63,7 +59,7 @@ export default function SearchRecipes() {
                 image={meal.strMealThumb}
                 title={meal.strMeal}
                 nationality={meal.strArea}
-                youtubeUrl={meal.youtubeUrl}
+                youtubeUrl={meal.strYoutube}
                 id={meal.idMeal}
               />
             ))

@@ -6,23 +6,25 @@ import apiData from '../../services/api'
 import * as C from './style'
 import { useState, useEffect } from 'react'
 
+interface ApiResponse {
+  meals: MealProps[]
+}
+
 const searchMeals = async (ingredient: string) => {
   try {
-    const response = await apiData.get('filter.php', {
+    const response = await apiData.get<ApiResponse>('filter.php', {
       params: {
         i: ingredient
       }
     })
 
-    console.log(response.data.meals)
-
     return (
-      response.data.meals?.map((meal: any) => ({
+      response.data.meals?.map((meal: MealProps) => ({
         idMeal: meal.idMeal,
         strMealThumb: meal.strMealThumb,
         strMeal: meal.strMeal,
         strArea: meal.strArea,
-        youtubeUrl: meal.strYoutube
+        strYoutube: meal.strYoutube
       })) ?? []
     )
   } catch (error) {
@@ -39,12 +41,16 @@ export default function RecipesByIngredient() {
   useEffect(() => {
     const fetchIngredients = async () => {
       try {
-        const response = await apiData.get('list.php?i=list')
+        const response = await apiData.get<ApiResponse>('list.php?i=list')
 
         const ingredients =
-          response.data.meals?.map(
-            (ingredient: any) => ingredient.strIngredient
-          ) ?? []
+          response.data.meals
+            ?.map((ingredient: MealProps) => ingredient.strIngredient)
+            .filter(
+              (ingredient: string | undefined): ingredient is string =>
+                !!ingredient
+            ) ?? []
+
         setAllIngredients(ingredients)
       } catch (error) {
         console.error('Erro ao buscar ingredientes:', error)
@@ -102,7 +108,7 @@ export default function RecipesByIngredient() {
                 image={meal.strMealThumb}
                 title={meal.strMeal}
                 nationality={meal.strArea}
-                youtubeUrl={meal.youtubeUrl}
+                youtubeUrl={meal.strYoutube}
                 id={meal.idMeal}
               />
             ))
